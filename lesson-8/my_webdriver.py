@@ -89,6 +89,8 @@ class MyWebdriver:
         print(f"✅ Скриншот сохранён! 🎉")
 
 if __name__ == "__main__":
+    import random
+
     print("\n✨✨✨ Добро пожаловать в Selenium-парсер ✨✨✨\n")
 
     # Загружаем конфиг и получаем URL торта
@@ -96,16 +98,20 @@ if __name__ == "__main__":
     URL = conf.get_cake_url()
     print(f"🍰 Сегодня работаем с тортом: {URL}\n")
 
-    # Запускаем браузер в фоновом режиме
+    # Запускаем браузер
     my_webdriver = MyWebdriver(False)
 
     # Открываем страницу с тортом
     my_webdriver.open_url(URL)
 
+    # Генерируем имя файла: screen_ + 5 случайных цифр
+    random_num = random.randint(10000, 99999)
+    screenshot_name = f"screen_{random_num}.png"
+
     # Делаем скриншот
-    my_webdriver.take_screenshot("screen.png")
+    my_webdriver.take_screenshot(screenshot_name)
 
     # Закрываем браузер
     my_webdriver.quit()
 
-    print("\n🎉 Готово! Скриншот страницы с тортом лежит в папке проекта, теперь можно и поспать.\n")
+    print(f"\n🎉 Готово! Скриншот '{screenshot_name}' сохранён.\n")
